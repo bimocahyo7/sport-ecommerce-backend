@@ -5,7 +5,7 @@ import {
   getCategoryById,
   updateCategory,
   deleteCategory,
-} from "../controllers/category.controllers";
+} from "../controllers/category.controller";
 import { authenticate } from "../middlewares/auth.middleware";
 import { upload } from "../middlewares/upload.middleware";
 

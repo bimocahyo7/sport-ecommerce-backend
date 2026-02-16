@@ -3,7 +3,8 @@ import cors from "cors";
 import path from "path";
 import authRoutes from "./routes/auth.route";
 import categoryRoutes from "./routes/category.route";
-import productRoute from "./routes/product.route";
+import productRoutes from "./routes/product.route";
+import bankRoutes from "./routes/bank.route";
 
 const app = express();
 
@@ -14,7 +15,8 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/products", productRoute);
+app.use("/api/products", productRoutes);
+app.use("/api/banks", bankRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend Express API is running");
