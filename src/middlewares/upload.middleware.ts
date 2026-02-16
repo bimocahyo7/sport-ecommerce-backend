@@ -30,7 +30,7 @@ const fileFilter = (req: Request, file: Express.Multer.File, callback: multer.Fi
   }
 };
 
-export const upload = multer({
+const multerUpload = multer({
   storage,
   fileFilter,
   limits: {
@@ -38,3 +38,18 @@ export const upload = multer({
     files: 1, // Limit number of files
   },
 });
+
+export const upload = {
+  single: (fieldName: string) => {
+    return [
+      multerUpload.single(fieldName),
+      (req: Request, res: any, next: any) => {
+        if (req.file) {
+          req.file.path = `${UPLOAD_DIRECTORY}/${req.file.filename}`;
+          req.file.destination = UPLOAD_DIRECTORY;
+        }
+        next();
+      },
+    ];
+  },
+};
